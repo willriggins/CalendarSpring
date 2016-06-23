@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+</head>
+<body>
+{{^username}}
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="Username"/>
+    <input type="text" name="password" placeholder="Password"/>
+    <button type="submit">in</button>
+</form>
+{{/username}}
+
+{{#username}}
+Hello {{.}}!
+<form action="/logout" method="post">
+    <button type="submit">out</button>
+</form>
+
+<br><br>
+
+<form action="/create-event" method="post">
+    <input type="text" name="description" placeholder="Description"/>
+    <input type="datetime-local" name="time" value="{{now}}"/>
+    <button type="submit">create event</button>
+</form>
+{{/username}}
+<br>
+{{#events}}
+{{description}} {{time}}<br>
+{{/events}}
+</body>
+</html>
